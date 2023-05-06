@@ -15,7 +15,7 @@ public class BinarySearchTree <T extends Comparable<T>>{
     public  boolean isEmpty(){
         return root == null;
     }
-    public void insert(T value){
+    public void put(T value){
         root = insertRecursive(value, root);
     }
     private MyNode<T> insertRecursive(T value, MyNode<T>  current){
@@ -28,5 +28,7 @@ public class BinarySearchTree <T extends Comparable<T>>{
         current.size= current.left.size+current.right.size+1;
         return current;
     }
+
+    public V get()
 
 }
