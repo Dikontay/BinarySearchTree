@@ -1,13 +1,18 @@
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
 public class BinarySearchTree <K extends Comparable<K>, V>{
     private Node root;
    private class Node{
         private K key;
         private V val;
         private Node left, right;
-        public int size = 1;
+        public int size;
         public Node(K key, V value){
             this.key = key;
             this.val = value;
+            size = 1;
         }
    }
 
@@ -18,37 +23,57 @@ public class BinarySearchTree <K extends Comparable<K>, V>{
        if(node == null){
            return new Node(key, val);
        }
-       if(key.compareTo(node.key)>0){
+        int cmp = key.compareTo(node.key);
+       if(cmp>0){
            node.right=put(node.right, key, val);
        } else node.left= put(node.left, key, val);
 
-
-
-      node.size= isNotNull(node.left)+isNotNull(node.right)+1 ;
+       node.size= isNotNull(node.left)+isNotNull(node.right)+1 ;
       return node;
    }
    private int isNotNull(Node n){
-       return n!=null? 1 : 0;
+       return n!=null? n.size : 0;
    }
    public V get(K key){
-
        return find(root, key);
    }
    private V find(Node n, K key){
        if(n==null){
            return null;
        }
-       if(n.key.compareTo(key)==0){
+       int cmp = n.key.compareTo(key);
+       if(cmp==0){
            return n.val;
        }
-       if(n.key.compareTo(key)>0){
-          return find(n.right, key);
+       else if (cmp>0){
+           return find(n.right, key);
        }else return find(n.left, key);
+
    }
    public void delete(K key){
 
    }
    public Iterable<K> iterator(){
        return null;
+   }
+   public boolean isEmpty(){
+       return root==null;
+   }
+   private class InOrder implements Iterable<K>{
+
+       @Override
+       public Iterator<K> iterator() {
+           return null;
+       }
+
+       @Override
+       public void forEach(Consumer<? super K> action) {
+           Iterable.super.forEach(action);
+       }
+
+       @Override
+       public Spliterator<K> spliterator() {
+           return Iterable.super.spliterator();
+       }
    }
 }
