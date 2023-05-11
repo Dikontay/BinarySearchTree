@@ -1,10 +1,14 @@
-public class BinarySearchTree <K extends Comparable<K>, V>{
+import java.util.EmptyStackException;
+import java.util.Iterator;
+import java.util.Stack;
+
+public class BinarySearchTree <K extends Comparable<K>, V> implements Iterable<K>{
     private Node root;
-   private class Node{
-        private K key;
+    private class Node{
+        private   K key;
         private V val;
+        private int size;
         private Node left, right;
-        public int size;
         public Node(K key, V value){
             this.key = key;
             this.val = value;
@@ -80,21 +84,24 @@ public class BinarySearchTree <K extends Comparable<K>, V>{
 
          }// Case 3 if a node has both left and right child
          else {
-             Node max = maxLeft(n.left);
-             n.key = max.key;
-             n.right = delete(n.right, key);
+             Node t= max(n.left);
+             n.key=t.key;
+             n.val=t.val;
+            n.right=delete(n.right, t.key);
+           n.left= t.left;
          }
 
      }
        return n;
    }
     //maximum from left child of node
-   private Node maxLeft(Node n){
+   private Node max(Node n){
        while(n.right!=null) {
            n = n.right;
        }
        return n;
    }
+
     //minimum from left child of node
    private Node minRight(Node n){
        while(n.left!=null){
@@ -102,13 +109,60 @@ public class BinarySearchTree <K extends Comparable<K>, V>{
        }
        return n;
    }
-   public Iterable<K> iterator(){
-       return null;
+   public void output(){
+       output(root);
    }
+   private void output(Node n){
+       if(n==null){
+           return;
+       }
+
+       output(n.left);
+       System.out.println("This is key: "+ n.key + " This is value : " + n.val);
+       output(n.right);
+   }
+
    public boolean isEmpty(){
        return root==null;
    }
+    @Override
+    public Iterator<K> iterator() {
+        return new InOrder(root);
+    }
+
+    private class InOrder implements Iterator<K> {
+        Stack<Node> stack = new Stack<>();
+
+        public InOrder(Node n){
+            pushLeft(n);
+        }
+
+        private void pushLeft(Node n){
+            while(n!=null){
+                stack.push(n);
+                n = n.left;
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !stack.isEmpty();
+        }
+
+        @Override
+        public K next() {
+            if(hasNext()){
+                Node current = stack.peek();
+                stack.pop();
+               pushLeft(current.right);
+
+                return current.key;
+            }
+            else return null;
+
+        }
 
 
+    }
 
 }

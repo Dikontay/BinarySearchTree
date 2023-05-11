@@ -10,10 +10,12 @@ public class Main {
       bst.put(2, "Ruslan");
       bst.put(1, "Rulan");
       bst.put(4, "Adel");
+      bst.delete(7);
+      bst.output();
 
-      System.out.println(bst.get(10));
-      System.out.println(bst.get(7));
-
+      for (var b: bst ) {
+        System.out.println(b);
+      }
 
 
     }
