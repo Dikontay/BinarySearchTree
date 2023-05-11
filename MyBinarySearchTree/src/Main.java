@@ -10,7 +10,8 @@ public class Main {
       bst.put(2, "Ruslan");
       bst.put(1, "Rulan");
       bst.put(4, "Adel");
-      System.out.println(bst.isEmpty());
+
+      System.out.println(bst.get(10));
       System.out.println(bst.get(7));
 
 
