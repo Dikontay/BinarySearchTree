@@ -12,10 +12,9 @@ public class Main {
       bst.put(4, "Adel");
       bst.delete(7);
       bst.output();
+      System.out.println(bst.get(4));;
 
-      for (var b: bst ) {
-        System.out.println(b);
-      }
+      for (BinarySearchTree.Node<Integer, String> n   : bst ) System.out.println(n);
 
 
     }

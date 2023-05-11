@@ -2,11 +2,11 @@ import java.util.EmptyStackException;
 import java.util.Iterator;
 import java.util.Stack;
 
-public class BinarySearchTree <K extends Comparable<K>, V> implements Iterable<K>{
+public class BinarySearchTree <K extends Comparable<K>, V> implements Iterable<Object>{
     private Node root;
-    private class Node{
-        private   K key;
-        private V val;
+    public class Node{
+        public  K key;
+        public V val;
         private int size;
         private Node left, right;
         public Node(K key, V value){
@@ -88,7 +88,7 @@ public class BinarySearchTree <K extends Comparable<K>, V> implements Iterable<K
              n.key=t.key;
              n.val=t.val;
             n.right=delete(n.right, t.key);
-           n.left= t.left;
+           n.left = t.left;
          }
 
      }
@@ -126,11 +126,11 @@ public class BinarySearchTree <K extends Comparable<K>, V> implements Iterable<K
        return root==null;
    }
     @Override
-    public Iterator<K> iterator() {
+    public Iterator<Object> iterator() {
         return new InOrder(root);
     }
 
-    private class InOrder implements Iterator<K> {
+    public  class InOrder implements Iterator<Object> {
         Stack<Node> stack = new Stack<>();
 
         public InOrder(Node n){
