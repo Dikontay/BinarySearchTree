@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
       BinarySearchTree<Integer, String> bst = new BinarySearchTree<>();
@@ -10,11 +13,9 @@ public class Main {
       bst.put(2, "Ruslan");
       bst.put(1, "Rulan");
       bst.put(4, "Adel");
-      bst.delete(7);
-      bst.output();
-      System.out.println(bst.get(4));;
 
-      for (BinarySearchTree.Node<Integer, String> n   : bst ) System.out.println(n);
+
+      for (var n : bst ) System.out.println(n.key+" "+n.val);
 
 
     }
