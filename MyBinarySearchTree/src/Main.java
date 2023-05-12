@@ -13,8 +13,8 @@ public class Main {
       bst.put(2, "Ruslan");
       bst.put(1, "Rulan");
       bst.put(4, "Adel");
-
-
+      bst.delete(4);
+      System.out.println("This is size "+ bst.size());
       for (var n : bst ) System.out.println(n.key+" "+n.val);
 
 

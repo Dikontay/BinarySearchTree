@@ -6,12 +6,12 @@ public class BinarySearchTree <K extends Comparable<K>, V> implements Iterable<B
    public   class Node{
         public  K key;
         public V val;
-        private int size;
+        private int size=1;
         private Node left, right;
         public Node(K key, V value){
             this.key = key;
             this.val = value;
-            size = 1;
+
         }
    }
 
@@ -32,6 +32,9 @@ public class BinarySearchTree <K extends Comparable<K>, V> implements Iterable<B
    }
    private int sizeOfNode(Node n){
        return n!=null? n.size : 0;
+   }
+   public int size(){
+       return root.size;
    }
    public V get(K key){
        if(find(root,  key)==null){
@@ -91,6 +94,7 @@ public class BinarySearchTree <K extends Comparable<K>, V> implements Iterable<B
          }
 
      }
+       n.size--;
        return n;
    }
     //maximum from left child of node
